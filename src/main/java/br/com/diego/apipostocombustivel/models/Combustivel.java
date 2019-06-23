@@ -6,11 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- *
- * @author DIEGO
- */
-
+/**Classo do objeto Combustivel
+* @author Diego Rangel
+* @return -
+*/
 @Entity
 @Table(name="TB_COMBUSTIVEL")
 public class Combustivel {

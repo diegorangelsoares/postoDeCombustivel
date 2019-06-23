@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.diego.apipostocombustivel.repository.CombustivelRepository;
 
+/**Classe de códigos do combustivel
+* @author Diego Rangel
+*/
 @RestController
 @RequestMapping(value="/api")
 @CrossOrigin(origins="*")

@@ -1,6 +1,9 @@
 package br.com.diego.apipostocombustivel.erro;
 
-
+/**Classe detalha algumas mensagens
+* @author Diego Rangel
+* @return -
+*/
 public class ResourceNotFoundDetails extends ErrorDetails {
 	private ResourceNotFoundDetails() {
 		// TODO Auto-generated constructor stub

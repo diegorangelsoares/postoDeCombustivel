@@ -9,6 +9,10 @@ import javax.persistence.Table;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+/**Classo do objeto Usuario
+* @author Diego Rangel
+* @return -
+*/
 @Entity
 @Table(name="TB_USUARIO")
 public class Usuario {

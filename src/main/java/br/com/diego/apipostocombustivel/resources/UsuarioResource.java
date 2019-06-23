@@ -19,9 +19,11 @@ import br.com.diego.apipostocombustivel.erro.ResourceNotFoundException;
 import br.com.diego.apipostocombustivel.models.Usuario;
 import br.com.diego.apipostocombustivel.repository.UsuarioRepository;
 
+/**Classe de tratamentos do usuario
+* @author Diego Rangel
+*/
 @RestController
 @RequestMapping(value="/api")
-//@Api(value="API REST Clientes")//isso é pra o Swagger depois coloco
 @CrossOrigin(origins="*")
 public class UsuarioResource {
 	

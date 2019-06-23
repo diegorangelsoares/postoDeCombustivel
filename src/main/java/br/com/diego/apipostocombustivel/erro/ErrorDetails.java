@@ -1,7 +1,10 @@
 package br.com.diego.apipostocombustivel.erro;
 
 
-
+/**Classe de trata os erros
+* @author Diego Rangel
+* @return Erros
+*/
 public class ErrorDetails {
 	
 	private String title;
