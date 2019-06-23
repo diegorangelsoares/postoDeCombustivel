@@ -4,7 +4,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -18,7 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import br.com.diego.apipostocombustivel.models.Usuario;
 import br.com.diego.apipostocombustivel.repository.CombustivelRepository;
 
 @RunWith(SpringRunner.class)
@@ -50,16 +48,7 @@ public class CombustivelResourceTest {
 	@Before
 	public void setUp(){
 		
-		/* ========== configurando o cenario principal ========== */
-//		Usuario user = new Usuario(1, "Diego", "diego@email.com", "1");
-//		BDDMockito.when(this.uRepository.findById(user.getId())).thenReturn(user);
 	}
 	
-	@Test
-	public void checandoCarregamentoArquivoCsvRetornarStatus200() {
-		/* ========== Execução -> Requisição Usuario========== */
-		 ResponseEntity<String>  response = restTemplate.getForEntity("/api/combustivel/filecsv", String.class,"");
-		 /* ========== Verificações========== */
-		 Assertions.assertThat(response.getStatusCodeValue()).isEqualTo(200);
-	}
+	
 }
