@@ -65,6 +65,6 @@ public class UsuarioResource {
 	private void verifyIfStudentExists(long id){
 		if(uRepository.findById(id) == null)
 			throw new ResourceNotFoundException("Usuario não encontrado para o Id: " + id);
-}
+	}
 
 }

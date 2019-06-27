@@ -1,8 +1,6 @@
 package br.com.diego.apipostocombustivel.resource;
 
-import org.assertj.core.api.Assertions;
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.LocalServerPort;
@@ -13,7 +11,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -33,8 +30,8 @@ public class CombustivelResourceTest {
 	@MockBean
 	private CombustivelRepository crRepository;
 	
-	@Autowired
-	private MockMvc mockmvc;
+//	@Autowired
+//	private MockMvc mockmvc;
 	
 	
 	@TestConfiguration
