@@ -180,19 +180,23 @@ public class CombustivelResource {
 	
 	/**Combustivel Agrupado por Bandeira
 	* @author Diego Rangel
-	* @return String - Retorna uma lista de combustivel
-	*//*
-	@GetMapping( path="combustiveis/")
-	public ResponseEntity<?> getAgrupBandeira(){
+	* @return String - Retorna uma lista de combustivel agrupado por bandeira
+	*/
+	@GetMapping( path="combustiveis/AgrupadoPorDistribuidora")
+	public ResponseEntity<?> getAgrupadoPorDistribuidora(){
 		List <Combustivel> combustiveis = cRepository.ReturnPorBandeira();
-		return new ResponseEntity<>(combustiveis,HttpStatus.OK);
+		return new ResponseEntity<>(combustiveis	,HttpStatus.OK);
 	}
-*/	
 	
-	
+	/**Combustivel Agrupado por Data da Coleta
+	* @author Diego Rangel
+	* @return String - Retorna uma lista de combustivel agrupado por data da coleta
+	*/
+	@GetMapping( path="combustiveis/AgrupadoPorDataDaColeta")
+	public ResponseEntity<?> getAgrupadoPorDataDaColeta(){
+		List <Combustivel> combustiveis = cRepository.ReturnPorDataDaColeta();
+		return new ResponseEntity<>(combustiveis	,HttpStatus.OK);
+	}
 
-	
-	
-	
 
 }
