@@ -40,7 +40,7 @@ public class H2DataBase {
         String line = "";
         try {
             br = new BufferedReader(new FileReader("C:\\Users\\DIEGO\\Desktop\\2018-1_CA.csv"));
-            int contadorLinha = 1;
+            int contadorLinha = 0;
             while ((line = br.readLine()) != null) {
                 // Usar o separador
                 String[] column = line.split("  ");           

@@ -56,6 +56,46 @@ public class CombustivelResource {
 		return new ResponseEntity<>(med	,HttpStatus.OK);
 	}
 	
+	/**Código para retornar média de venda e compra por municipio
+	* @author Diego Rangel
+	* @return String - Retorna a media de preço de compra e venda do combstivel
+	*/
+	@GetMapping( path="combustiveis/MediaCompraVendaPorMunicipio/{municipio}")
+	public ResponseEntity<?> getMediaCompraVenda(@PathVariable("municipio") String municipio){
+		List <Combustivel> combustiveis = cRepository.findAll();
+		List <Combustivel> combustiveisMunicipio = new ArrayList<>();
+		for (int i = 0; i < combustiveis.size(); i++) {
+			if (combustiveis.get(i).getMunicipio().equals(municipio.toUpperCase())) {
+				combustiveisMunicipio.add(combustiveis.get(i));
+			}
+		}
+		//fazer código para calcular media
+		String med = retornMedia(combustiveisMunicipio);
+		String medCompra = retornMediaCompra(combustiveisMunicipio);
+		String retorno = "Média de Compra: "+medCompra + "  Média de Venda: "+med;
+		return new ResponseEntity<>(retorno	,HttpStatus.OK);
+	}
+	
+	/**Código para retornar média de venda e compra por bandeira
+	* @author Diego Rangel
+	* @return String - Retorna a media de preço de compra e venda do combstivel
+	*/
+	@GetMapping( path="combustiveis/MediaCompraVendaPorBandeira/{bandeira}")
+	public ResponseEntity<?> getMediaCompraVendaPorBandeira(@PathVariable("bandeira") String bandeira){
+		List <Combustivel> combustiveis = cRepository.findAll();
+		List <Combustivel> combustiveisMunicipio = new ArrayList<>();
+		for (int i = 0; i < combustiveis.size(); i++) {
+			if (combustiveis.get(i).getBandeira().equals(bandeira.toUpperCase())) {
+				combustiveisMunicipio.add(combustiveis.get(i));
+			}
+		}
+		//fazer código para calcular media
+		String med = retornMedia(combustiveisMunicipio);
+		String medCompra = retornMediaCompra(combustiveisMunicipio);
+		String retorno = "Média de Compra: "+medCompra + "  Média de Venda: "+med;
+		return new ResponseEntity<>(retorno	,HttpStatus.OK);
+	}
+	
 	public String retornMedia (List <Combustivel> combustiveis){
 		DecimalFormat df = new DecimalFormat ("#0.000", new DecimalFormatSymbols (new Locale ("pt", "BR")));  
 		int quantReg = 0;
@@ -71,7 +111,6 @@ public class CombustivelResource {
 		            totalPrecos = totalPrecos + preco1;
 		            quantReg++;
 		        } catch (ParseException ex) {
-		        	System.out.println(combustiveis.get(i).getId()+" Preço: "+valorVenda);
 		            ex.printStackTrace();
 		        }
 				//System.out.println("Municipio: "+combustiveis.get(i).getMunicipio()+"\nPreço: "+combustiveis.get(i).getValorDaVenda()+"\n");
@@ -81,6 +120,31 @@ public class CombustivelResource {
         String TotalString = df.format (totalPrecos); // deve retornar a string "1.234,56"     
         return TotalString;
     }
+	
+	public String retornMediaCompra (List <Combustivel> combustiveis){
+		DecimalFormat df = new DecimalFormat ("#0.000", new DecimalFormatSymbols (new Locale ("pt", "BR")));  
+		int quantReg = 0;
+		double totalPrecos = 0;
+		for (int i = 0; i < combustiveis.size(); i++) {
+			double preco1 = 0;
+			String valorCompra = combustiveis.get(i).getValoDaCompra();
+			//Tratar se tem preço de venda preenchido
+			if (!valorCompra.equals("")){
+		        try {
+		        	preco1 = df.parse (valorCompra).doubleValue(); // isto deve dar o número "1234.56"	 
+		        	//preco1 = Double.parseDouble(valorVenda);    
+		            totalPrecos = totalPrecos + preco1;
+		            quantReg++;
+		        } catch (ParseException ex) {
+		            ex.printStackTrace();
+		        }
+			}
+		}
+		totalPrecos = totalPrecos / quantReg;
+        String TotalString = df.format (totalPrecos); // deve retornar a string "1.234,56"     
+        return TotalString;
+    }
+    
     
 	
 	/**Código para retornar historico de combustivel
@@ -102,12 +166,12 @@ public class CombustivelResource {
 	* @author Diego Rangel
 	* @return String - Retorna uma lista de combustivel
 	*/
-	@GetMapping( path="combustiveis/regiao/{regiao}")
+	@GetMapping( path="combustiveis/importadoPorRegiao/{regiao}")
 	public ResponseEntity<?> getImportadoPorSigla(@PathVariable("regiao") String regiao){
 		List <Combustivel> combustiveis = cRepository.findAll();
 		List <Combustivel> combustiveisSigla = new ArrayList<>();
 		for (int i = 0; i < combustiveis.size(); i++) {
-			if (combustiveis.get(i).equals(regiao)) {
+			if (combustiveis.get(i).getRegiao().equals(regiao.toUpperCase())) {
 				combustiveisSigla.add(combustiveis.get(i));
 			}
 		}
