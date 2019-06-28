@@ -57,19 +57,25 @@ public class CombustivelResource {
 	}
 	
 	public String retornMedia (List <Combustivel> combustiveis){
-		DecimalFormat df = new DecimalFormat ("#,##0.00", new DecimalFormatSymbols (new Locale ("pt", "BR")));  
+		DecimalFormat df = new DecimalFormat ("#0.000", new DecimalFormatSymbols (new Locale ("pt", "BR")));  
 		int quantReg = 0;
 		double totalPrecos = 0;
 		for (int i = 0; i < combustiveis.size(); i++) {
 			double preco1 = 0;
-	        try {
-	        	preco1 = df.parse (combustiveis.get(i).getValorDaVenda()).doubleValue(); // isto deve dar o número "1234.56"	           
-	            totalPrecos = totalPrecos + preco1;
-	            quantReg++;
-	        } catch (ParseException ex) {
-	            ex.printStackTrace();
-	        }
-			//System.out.println("Municipio: "+combustiveis.get(i).getMunicipio()+"\nPreço: "+combustiveis.get(i).getValorDaVenda()+"\n");
+			String valorVenda = combustiveis.get(i).getValorDaVenda();
+			//Tratar se tem preço de venda preenchido
+			if (!valorVenda.equals("")){
+		        try {
+		        	preco1 = df.parse (valorVenda).doubleValue(); // isto deve dar o número "1234.56"	 
+		        	//preco1 = Double.parseDouble(valorVenda);    
+		            totalPrecos = totalPrecos + preco1;
+		            quantReg++;
+		        } catch (ParseException ex) {
+		        	System.out.println(combustiveis.get(i).getId()+" Preço: "+valorVenda);
+		            ex.printStackTrace();
+		        }
+				//System.out.println("Municipio: "+combustiveis.get(i).getMunicipio()+"\nPreço: "+combustiveis.get(i).getValorDaVenda()+"\n");
+			}
 		}
 		totalPrecos = totalPrecos / quantReg;
         String TotalString = df.format (totalPrecos); // deve retornar a string "1.234,56"     
@@ -92,11 +98,11 @@ public class CombustivelResource {
 	}
 	
 	
-	/**Código combustivel importado por sigla de regiao
+	/**Combustivel importado por sigla de regiao
 	* @author Diego Rangel
 	* @return String - Retorna uma lista de combustivel
-	*//*
-	@GetMapping( path="combustiveis/{regiao}")
+	*/
+	@GetMapping( path="combustiveis/regiao/{regiao}")
 	public ResponseEntity<?> getImportadoPorSigla(@PathVariable("regiao") String regiao){
 		List <Combustivel> combustiveis = cRepository.findAll();
 		List <Combustivel> combustiveisSigla = new ArrayList<>();
@@ -107,7 +113,17 @@ public class CombustivelResource {
 		}
 		return new ResponseEntity<>(combustiveisSigla,HttpStatus.OK);
 	}
-	*/
+	
+	/**Combustivel Agrupado por Bandeira
+	* @author Diego Rangel
+	* @return String - Retorna uma lista de combustivel
+	*//*
+	@GetMapping( path="combustiveis/")
+	public ResponseEntity<?> getAgrupBandeira(){
+		List <Combustivel> combustiveis = cRepository.ReturnPorBandeira();
+		return new ResponseEntity<>(combustiveis,HttpStatus.OK);
+	}
+*/	
 	
 	
 
