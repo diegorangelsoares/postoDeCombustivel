@@ -39,11 +39,11 @@ public class H2DataBase {
         BufferedReader br = null;
         String line = "";
         try {
-            br = new BufferedReader(new FileReader("C:\\Users\\DIEGO\\Desktop\\2018-1_CA.csv"));
+            br = new BufferedReader(new FileReader(filePath));
             int contadorLinha = 0;
             while ((line = br.readLine()) != null) {
                 // Usar o separador
-                String[] column = line.split("  ");           
+                String[] column = line.split(separatorCSV);           
                 String dataImportacao = "";
                 Date data = new Date();
                 SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yy");

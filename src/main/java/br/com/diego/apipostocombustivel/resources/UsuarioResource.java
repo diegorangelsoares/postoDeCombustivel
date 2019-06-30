@@ -30,15 +30,14 @@ public class UsuarioResource {
 	@Autowired
 	private UsuarioRepository uRepository;
 	
-	
 	@GetMapping(path="usuarios")
 	public ResponseEntity<?> listAll(Pageable pageable){
 		return new ResponseEntity<>(uRepository.findAll(pageable),HttpStatus.OK);
 	}
 	
 	@GetMapping( path="usuarios/{id}")
-	public ResponseEntity<?> getStudentById(@PathVariable("id") long id){
-		verifyIfStudentExists(id);
+	public ResponseEntity<?> getUsersById(@PathVariable("id") long id){
+		verifyIfUsersExists(id);
 		Usuario user = uRepository.findById(id);
 		return new ResponseEntity<>(user,HttpStatus.OK);
 	}
@@ -50,19 +49,19 @@ public class UsuarioResource {
 	}
 	@DeleteMapping(path="usuarios/{id}")
 	public ResponseEntity<?> delete(@PathVariable(name="id") long id){
-		verifyIfStudentExists(id);
+		verifyIfUsersExists(id);
 		uRepository.delete(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	@PutMapping(path="usuarios")
 	public ResponseEntity<?> update(@RequestBody Usuario user){
-		verifyIfStudentExists(user.getId());
+		verifyIfUsersExists(user.getId());
 		uRepository.save(user);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	private void verifyIfStudentExists(long id){
+	private void verifyIfUsersExists(long id){
 		if(uRepository.findById(id) == null)
 			throw new ResourceNotFoundException("Usuario não encontrado para o Id: " + id);
 	}
