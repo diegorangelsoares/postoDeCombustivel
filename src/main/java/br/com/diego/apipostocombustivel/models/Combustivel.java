@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**Classo do objeto Combustivel
+/**Classe do objeto Combustivel
 * @author Diego Rangel
 * @return -
 */
