@@ -13,7 +13,16 @@ Introdução:
 
 Descrição: Api Rest com importação de arquivo CSV com dados de postos de combustíveis, que contém GRUD de usuários, histórico de Preços e consulta dos dados importados.
 
-Principal funcionalidade: Importar arquivo de combustível CSV contido dentro do projeto e disponibilizar consultas dos dados importados como: Preço, região, postos, etc.
+Principal funcionalidade: 
+Implementado recurso para CRUD de usuários
+Implementado recurso para CRUD de histórico de preço de combustível
+Implementado recurso para importação de csv (Arquivo dentro do projeto disponibilizado pelo desafio)
+Implementado recurso que retorne a média de preço de combustível com base no nome do município
+Implementado recurso que retorne todas as informações importadas por sigla da região
+Implementado recurso que retorne os dados agrupados por distribuidora
+Implementado recurso que retorne os dados agrupados pela data da coleta
+Implementado recurso que retorne o valor médio do valor da compra e do valor da venda por município
+Implementado recurso que retorne o valor médio do valor da compra e do valor da venda por bandeira
 
 API REST desenvolvida em Spring Boot
 						 Mavem
