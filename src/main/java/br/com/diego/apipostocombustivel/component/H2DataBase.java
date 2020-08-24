@@ -179,7 +179,7 @@ public class H2DataBase {
 		
 		//Inserir no banco
 		try {
-			crRepository.save(combustiveis);//acho que vai ter que mudar pra o tipo iterable, mais faz o teste pra ve
+			crRepository.save(combustiveis);
 		}catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
